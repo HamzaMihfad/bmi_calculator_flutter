@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'icon_card.dart';
 
 const bottomContainerHeight = 65.0;
 const bottomContainerColor = Color(0xffeb1555);
@@ -23,10 +25,18 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: [
                 Expanded(
-                  child: Card1(cardColor: cardColor),
+                  child: Card1(
+                    cardColor: cardColor,
+                    cardChild:
+                        IconCard(icon: FontAwesomeIcons.mars, label: 'MALE'),
+                  ),
                 ),
                 Expanded(
-                  child: Card1(cardColor: cardColor),
+                  child: Card1(
+                    cardColor: cardColor,
+                    cardChild:
+                        IconCard(icon: FontAwesomeIcons.venus, label: 'MALE'),
+                  ),
                 ),
               ],
             ),
@@ -48,7 +58,7 @@ class _InputPageState extends State<InputPage> {
           ),
           Container(
             color: bottomContainerColor,
-            margin: EdgeInsets.only(top: 10),
+            margin: EdgeInsets.only(top: 10.0),
             width: double.infinity,
             height: bottomContainerHeight,
           )
@@ -59,18 +69,20 @@ class _InputPageState extends State<InputPage> {
 }
 
 class Card1 extends StatelessWidget {
-  Card1({@required this.cardColor});
+  Card1({@required this.cardColor, this.cardChild});
 
   final Color cardColor;
+  final Widget cardChild;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(15),
+      margin: EdgeInsets.all(15.0),
       decoration: BoxDecoration(
         color: cardColor,
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(10.0),
       ),
+      child: Center(child: cardChild),
     );
   }
 }
