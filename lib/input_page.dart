@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'icon_card.dart';
 import 'card1.dart';
+import 'constants.dart';
 
-const bottomContainerHeight = 65.0;
-const bottomContainerColor = Color(0xffeb1555);
-const cardColor = Color(0xFF1D1E33);
-const inactiveCardColor = Color(0xff101328);
 enum Gender { male, female }
 
 class InputPage extends StatefulWidget {
@@ -32,7 +29,7 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: Card1(
                     cardColor:
-                        gender == Gender.male ? cardColor : inactiveCardColor,
+                        gender == Gender.male ? kCardColor : kInactiveCardColor,
                     cardChild:
                         IconCard(icon: FontAwesomeIcons.mars, label: 'MALE'),
                     onPress: () {
@@ -45,8 +42,9 @@ class _InputPageState extends State<InputPage> {
                 ),
                 Expanded(
                   child: Card1(
-                    cardColor:
-                        gender == Gender.female ? cardColor : inactiveCardColor,
+                    cardColor: gender == Gender.female
+                        ? kCardColor
+                        : kInactiveCardColor,
                     cardChild:
                         IconCard(icon: FontAwesomeIcons.venus, label: 'MALE'),
                     onPress: () {
@@ -61,25 +59,44 @@ class _InputPageState extends State<InputPage> {
             ),
           ),
           Expanded(
-            child: Card1(cardColor: cardColor),
+            child: Card1(
+              cardColor: kCardColor,
+              cardChild: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    'HEIGHT',
+                    style: kLabelTextStyle,
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        '180',
+                        style: kNumberLabel,
+                      )
+                    ],
+                  )
+                ],
+              ),
+            ),
           ),
           Expanded(
             child: Row(
               children: [
                 Expanded(
-                  child: Card1(cardColor: cardColor),
+                  child: Card1(cardColor: kCardColor),
                 ),
                 Expanded(
-                  child: Card1(cardColor: cardColor),
+                  child: Card1(cardColor: kCardColor),
                 ),
               ],
             ),
           ),
           Container(
-            color: bottomContainerColor,
+            color: kBottomContainerColor,
             margin: EdgeInsets.only(top: 10.0),
             width: double.infinity,
-            height: bottomContainerHeight,
+            height: kBottomContainerHeight,
           )
         ],
       ),
