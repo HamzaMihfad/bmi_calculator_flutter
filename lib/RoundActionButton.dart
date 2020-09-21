@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 class RoundActionButton extends StatelessWidget {
-  RoundActionButton({this.onPress, this.icon});
+  RoundActionButton({this.onPress, this.icon, this.tooltipMessage});
 
   final Function onPress;
   final IconData icon;
+  final String tooltipMessage;
 
   @override
   Widget build(BuildContext context) {
@@ -12,10 +13,14 @@ class RoundActionButton extends StatelessWidget {
       children: [
         Tooltip(
           margin: EdgeInsets.only(top: 4.0),
-          message: 'hello from tooltip',
-          textStyle: TextStyle(color: Colors.white),
+          message: (tooltipMessage != null ? tooltipMessage : 'hello'),
+          textStyle: TextStyle(
+              color:
+                  (tooltipMessage != null ? Colors.white : Color(0x00000000))),
           decoration: BoxDecoration(
-              color: Color(0x405c5f3e),
+              color: (tooltipMessage != null
+                  ? Color(0x405c5f3e)
+                  : Color(0x00000000)),
               borderRadius: BorderRadius.circular(4.0)),
           child: RawMaterialButton(
             child: Icon(icon),

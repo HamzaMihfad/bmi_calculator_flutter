@@ -3,7 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'icon_card.dart';
 import 'card1.dart';
 import 'constants.dart';
-import 'FloatingActionButton.dart';
+import 'RoundActionButton.dart';
 
 enum Gender { male, female }
 
@@ -14,7 +14,7 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   Gender gender;
-  int height = 160;
+  double height = 160.0;
   int weight = 60;
   int age = 22;
 
@@ -84,7 +84,7 @@ class _InputPageState extends State<InputPage> {
                     textBaseline: TextBaseline.alphabetic,
                     children: [
                       Text(
-                        height.toString(),
+                        height.floor().toString(),
                         style: kNumberLabel,
                       ),
                       Text(
@@ -110,10 +110,10 @@ class _InputPageState extends State<InputPage> {
                       max: 220.0,
                       //activeColor: Color(0xffeb1555),
                       //inactiveColor: Color(0xff8d8e98),
-                      value: height.toDouble(),
+                      value: height,
                       onChanged: (newValue) {
                         setState(() {
-                          height = newValue.round();
+                          height = newValue;
                         });
                       },
                     ),
@@ -149,6 +149,7 @@ class _InputPageState extends State<InputPage> {
                                 });
                               },
                               icon: Icons.remove,
+                              tooltipMessage: 'decrement weight',
                             ),
                             SizedBox(
                               width: 12.0,
@@ -160,6 +161,7 @@ class _InputPageState extends State<InputPage> {
                                 });
                               },
                               icon: Icons.add,
+                              tooltipMessage: 'increment weight',
                             ),
                           ],
                         )
@@ -191,6 +193,7 @@ class _InputPageState extends State<InputPage> {
                                 });
                               },
                               icon: Icons.remove,
+                              tooltipMessage: 'decrement age',
                             ),
                             SizedBox(
                               width: 12.0,
@@ -202,6 +205,7 @@ class _InputPageState extends State<InputPage> {
                                 });
                               },
                               icon: Icons.add,
+                              tooltipMessage: 'increment age',
                             ),
                           ],
                         )
@@ -217,6 +221,18 @@ class _InputPageState extends State<InputPage> {
             margin: EdgeInsets.only(top: 10.0),
             width: double.infinity,
             height: kBottomContainerHeight,
+            child: FlatButton(
+              child: Text(
+                'Calculate BMI',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 25.0,
+                ),
+              ),
+              onPressed: () {
+                print('hello');
+              },
+            ),
           ),
         ],
       ),
