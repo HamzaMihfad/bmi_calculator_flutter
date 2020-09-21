@@ -15,9 +15,7 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  Color maleCardColor = inactiveCardColor;
-  Color femaleCardColor = inactiveCardColor;
-  var gender;
+  Gender gender;
 
   @override
   Widget build(BuildContext context) {
@@ -32,39 +30,31 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: [
                 Expanded(
-                  child: GestureDetector(
-                    onTap: () {
+                  child: Card1(
+                    cardColor:
+                        gender == Gender.male ? cardColor : inactiveCardColor,
+                    cardChild:
+                        IconCard(icon: FontAwesomeIcons.mars, label: 'MALE'),
+                    onPress: () {
                       setState(() {
-                        gender = Gender.male;
-                        femaleCardColor = inactiveCardColor;
-                        maleCardColor = (maleCardColor == cardColor
-                            ? inactiveCardColor
-                            : cardColor);
+                        gender = gender == Gender.male ? null : Gender.male;
+                        print(gender);
                       });
                     },
-                    child: Card1(
-                      cardColor: maleCardColor,
-                      cardChild:
-                          IconCard(icon: FontAwesomeIcons.mars, label: 'MALE'),
-                    ),
                   ),
                 ),
                 Expanded(
-                  child: GestureDetector(
-                    onTap: () {
+                  child: Card1(
+                    cardColor:
+                        gender == Gender.female ? cardColor : inactiveCardColor,
+                    cardChild:
+                        IconCard(icon: FontAwesomeIcons.venus, label: 'MALE'),
+                    onPress: () {
                       setState(() {
-                        gender = Gender.female;
-                        maleCardColor = inactiveCardColor;
-                        femaleCardColor = (femaleCardColor == cardColor
-                            ? inactiveCardColor
-                            : cardColor);
+                        gender = gender == Gender.female ? null : Gender.female;
+                        print(gender);
                       });
                     },
-                    child: Card1(
-                      cardColor: femaleCardColor,
-                      cardChild:
-                          IconCard(icon: FontAwesomeIcons.venus, label: 'MALE'),
-                    ),
                   ),
                 ),
               ],
