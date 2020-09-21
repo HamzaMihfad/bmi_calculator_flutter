@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'icon_card.dart';
 import 'card1.dart';
 import 'constants.dart';
+import 'FloatingActionButton.dart';
 
 enum Gender { male, female }
 
@@ -219,31 +220,6 @@ class _InputPageState extends State<InputPage> {
           ),
         ],
       ),
-    );
-  }
-}
-
-class RoundActionButton extends StatelessWidget {
-  RoundActionButton({this.onPress, this.icon});
-
-  final Function onPress;
-  final IconData icon;
-
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      child: Icon(icon),
-      onPressed: onPress,
-      elevation: 6.0,
-      constraints: BoxConstraints.tightFor(
-        width: 56.0,
-        height: 56.0,
-      ),
-      //shape: CircleBorder(),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      fillColor: Color(0xff5c5f6e),
     );
   }
 }
