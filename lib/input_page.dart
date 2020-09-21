@@ -14,6 +14,8 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   Gender gender;
   int height = 160;
+  int weight = 60;
+  int age = 22;
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +41,9 @@ class _InputPageState extends State<InputPage> {
                         print(gender);
                       });
                     },
+                    cardBorder: (gender == Gender.male
+                        ? Border.all(width: 1.0, color: Color(0xff3c3f4e))
+                        : null),
                   ),
                 ),
                 Expanded(
@@ -54,6 +59,9 @@ class _InputPageState extends State<InputPage> {
                         print(gender);
                       });
                     },
+                    cardBorder: (gender == Gender.female
+                        ? Border.all(width: 1.0, color: Color(0xff3c3f4e))
+                        : null),
                   ),
                 ),
               ],
@@ -84,17 +92,30 @@ class _InputPageState extends State<InputPage> {
                       ),
                     ],
                   ),
-                  Slider(
-                    min: 50.0,
-                    max: 220.0,
-                    activeColor: Color(0xffeb1555),
-                    inactiveColor: Color(0xff8d8e98),
-                    value: height.toDouble(),
-                    onChanged: (newValue) {
-                      setState(() {
-                        height = newValue.round();
-                      });
-                    },
+                  SliderTheme(
+                    data: SliderTheme.of(context).copyWith(
+                      activeTrackColor: Color(0xffeb1555),
+                      inactiveTrackColor: Color(0xff8d8e98),
+                      thumbColor: Color(0xffeb1555),
+                      overlayColor: Color(0x29eb1555),
+                      thumbShape: RoundSliderThumbShape(
+                        enabledThumbRadius: 11.0,
+                      ),
+                      overlayShape:
+                          RoundSliderOverlayShape(overlayRadius: 22.0),
+                    ),
+                    child: Slider(
+                      min: 50.0,
+                      max: 220.0,
+                      //activeColor: Color(0xffeb1555),
+                      //inactiveColor: Color(0xff8d8e98),
+                      value: height.toDouble(),
+                      onChanged: (newValue) {
+                        setState(() {
+                          height = newValue.round();
+                        });
+                      },
+                    ),
                   ),
                 ],
               ),
@@ -104,10 +125,88 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: [
                 Expanded(
-                  child: Card1(cardColor: kCardColor),
+                  child: Card1(
+                    cardColor: kCardColor,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'WEIGHT',
+                          style: kLabelTextStyle,
+                        ),
+                        Text(
+                          weight.toString(),
+                          style: kNumberLabel,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundActionButton(
+                              onPress: () {
+                                setState(() {
+                                  weight--;
+                                });
+                              },
+                              icon: Icons.remove,
+                            ),
+                            SizedBox(
+                              width: 12.0,
+                            ),
+                            RoundActionButton(
+                              onPress: () {
+                                setState(() {
+                                  weight++;
+                                });
+                              },
+                              icon: Icons.add,
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
                 ),
                 Expanded(
-                  child: Card1(cardColor: kCardColor),
+                  child: Card1(
+                    cardColor: kCardColor,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'AGE',
+                          style: kLabelTextStyle,
+                        ),
+                        Text(
+                          age.toString(),
+                          style: kNumberLabel,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundActionButton(
+                              onPress: () {
+                                setState(() {
+                                  age--;
+                                });
+                              },
+                              icon: Icons.remove,
+                            ),
+                            SizedBox(
+                              width: 12.0,
+                            ),
+                            RoundActionButton(
+                              onPress: () {
+                                setState(() {
+                                  age++;
+                                });
+                              },
+                              icon: Icons.add,
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -117,9 +216,34 @@ class _InputPageState extends State<InputPage> {
             margin: EdgeInsets.only(top: 10.0),
             width: double.infinity,
             height: kBottomContainerHeight,
-          )
+          ),
         ],
       ),
+    );
+  }
+}
+
+class RoundActionButton extends StatelessWidget {
+  RoundActionButton({this.onPress, this.icon});
+
+  final Function onPress;
+  final IconData icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      child: Icon(icon),
+      onPressed: onPress,
+      elevation: 6.0,
+      constraints: BoxConstraints.tightFor(
+        width: 56.0,
+        height: 56.0,
+      ),
+      //shape: CircleBorder(),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      fillColor: Color(0xff5c5f6e),
     );
   }
 }
