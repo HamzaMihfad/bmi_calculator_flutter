@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'Pages/input_page.dart';
-import 'Pages/results_page.dart';
+import 'screens/input_page.dart';
+import 'screens/results_page.dart';
 
 void main() => runApp(BMICalculator());
 
@@ -28,7 +28,7 @@ class BMICalculator extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => InputPage(),
-        'results': (context) => ResultsPage()
+        //'results': (context) => ResultsPage()
       },
     );
   }
