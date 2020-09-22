@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'icon_card.dart';
-import 'card1.dart';
-import 'constants.dart';
-import 'RoundActionButton.dart';
+import '../Widgets/icon_card.dart';
+import '../Widgets/card1.dart';
+import '../Constants/constants.dart';
+import '../Widgets/RoundActionButton.dart';
 
 enum Gender { male, female }
 
@@ -219,19 +219,28 @@ class _InputPageState extends State<InputPage> {
           Container(
             color: kBottomContainerColor,
             margin: EdgeInsets.only(top: 10.0),
+            padding: EdgeInsets.only(bottom: 5.0),
             width: double.infinity,
             height: kBottomContainerHeight,
-            child: FlatButton(
-              child: Text(
-                'Calculate BMI',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 25.0,
-                ),
+            child: Tooltip(
+              message: 'Calculate your BMI',
+              decoration: BoxDecoration(
+                color: Color(0x405c5f3e),
+                borderRadius: BorderRadius.circular(4.0),
               ),
-              onPressed: () {
-                print('hello');
-              },
+              textStyle: TextStyle(color: Colors.white),
+              child: FlatButton(
+                child: Text(
+                  'Calculate BMI',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 25.0,
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.pushNamed(context, 'results');
+                },
+              ),
             ),
           ),
         ],
